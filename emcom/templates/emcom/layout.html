@@ -1,0 +1,78 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>
+            {% block title %}
+            {% endblock %}
+        </title>
+        {% block script %}
+        {% endblock %}
+        <script src="{% static 'emcom/js/layout.js' %}"></script>
+        <link rel="stylesheet" href="{% static 'emcom/css/styles.css' %}">
+    </head>
+    <body>
+
+        {% if user.is_authenticated %}
+            <nav class="home_nav">
+                <div>
+                    <a href="{% url 'home_page' %}">Emcom</a>
+                </div>
+                <div>
+                    <a href="{% url 'logout' %}">Logout</a>
+                </div>
+            </nav>
+        {% else %}
+            <nav class="home_nav">
+                <div>
+                    <a href="{% url 'home_page' %}">Emcom</a>
+                </div>
+                <div id="first_prompts">
+                    <button id="sign_up">Sign up</button>
+                    <button id="sign_in">Sign in</button>
+                </div>
+            </nav>
+            
+            <div id="access_forms">
+                <!--Gonna place the picture above/below the form on smaller screens-->
+                <!--i might have to flex the div so the img and form stay side by side-->
+                <!--when i click on sign up, it asks if im a company or customer-->
+                
+                <img src="/media/images/access_img.webp" alt="access_img" id="afi">
+                <div id="individual">
+                    <form action="{% url 'register' %}" method="post" class="forms">
+                        {% csrf_token %}
+                        {{form}}
+                        <input type="submit">
+                    </form>
+                </div>
+                <div id="login_form">
+                    <form action="{% url 'login' %}" method="post" class="forms">
+                        {% csrf_token %}
+                        {{login_form}}
+                        <input type="submit">
+                    </form>
+                </div>
+            </div>
+        
+            <!-- Will style this to be at the top of the page -->
+            {% if message %}
+                {{message}}
+            {% endif %}
+
+        {% endif %}
+
+        <div id="sidebar">
+            <a href="#">My Profile</a>
+            <a href="{% url 'marketplace' %}">Marketplace</a>
+            <a href="{% url 'business' %}">My Business</a>
+        </div>
+
+        <div id="main">
+            {% block body %}
+
+            {% endblock %}
+        </div>
+    </body>
+</html>

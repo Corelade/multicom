@@ -1,0 +1,48 @@
+{% extends 'emcom/layout.html' %}
+{% load static %}
+
+{% block title %}
+    Market
+{% endblock %}
+
+{% block script %}
+{% endblock %}
+
+{% block body %}
+
+    <!--<ul class="list_cover">
+        {% for business in businesses %}
+            <li class="list_items">
+                <a href="{% url 'business_detail' business.id %}">{{business}}</a>
+            </li>
+        {% endfor %}
+    </ul>-->
+
+    <div>
+        <ul class="list_cover">
+            {% for business_item in business_items %}
+                {% if business_item.business.user != request.user %}
+                    <li class="list_items listings" id="{{business_item.id}}">
+                        <div>
+                            Store : <a href="{% url 'business_detail' business_item.business.id %}">{{business_item.business}}</a>
+                        </div>
+                        <img src="{{business_item.image.url}}" alt="{{business_item.item_name}}">
+                        <h4>{{business_item.item_name}}</h4>
+                        <div>{{business_item.description}}</div>
+                        <div>#{{business_item.price}}</div>
+                        {% if request.user.id == business.user_id %}
+                            <div>
+                                <button id="delete_item">Delete Item</button>
+                            </div>
+                        {% else %}
+                            <div>
+                                <button id="place_order">Place Order</button>
+                            </div>
+                        {% endif %}
+                    </li>
+                {% endif %}
+            {% endfor %}
+        </ul>
+    </div>
+
+{% endblock %}

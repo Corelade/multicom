@@ -1,0 +1,40 @@
+{% extends 'emcom/layout.html' %}
+{% load static %}
+
+{% block title %}
+    My Business
+{% endblock %}
+
+{% block script %}
+    <script src="{% static 'emcom/js/my_business.js' %}"></script>
+{% endblock %}
+
+{% block body %}
+
+    <div id="mines">
+        <button id="add_business">Add Business</button>
+        <div></div>
+    </div>
+
+    <ul>
+        {% for business in businesses %}
+            <a href="{% url 'business_detail' business.id %}">{{business}}</a>
+        {% empty %}
+            No Business yet... Onboard
+        {% endfor %}
+    </ul>
+
+    <div id="add_business_div">
+        <div>
+            <div></div>
+            <div class="clo">&times;</div>
+        </div>
+        <form action="{% url 'add_business' %}" method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+            {{business_form}}
+            <input type="submit">
+        </form>
+    </div>
+    
+
+{% endblock %}

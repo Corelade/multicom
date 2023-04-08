@@ -1,0 +1,165 @@
+*{
+    box-sizing: border-box;
+}
+#access_forms, #user_type, #individual, #comp, #afi, #login_form, #add_business_div, #add_business_item_form{
+    display: none;
+}
+
+body{
+    margin: 0;
+}
+
+.home_nav{
+    display: flex;
+    justify-content: space-between;
+    padding: 20px;
+    height: auto;
+    position: fixed;
+    width: 100%;
+    z-index: 1;
+    height: 60px;
+    top: 0;
+    background-color: beige;
+}
+#sign_up, #sign_in, .delete_item, #place_order, #add_business, .edit_item, #add_business_item_button{
+    background-color: white;
+    border: 1px solid gray;
+    margin: 0px 3px;
+    padding: 5px 15px;
+    cursor: pointer;
+}
+#sign_up:hover, #sign_in:hover, .delete_item:hover, #place_order:hover, #add_business:hover, .edit_item:hover,  #add_business_item_button:hover{
+    background-color: beige;
+}
+
+#sidebar{
+    width: 10%;
+    height: auto;
+    position: fixed;
+    z-index: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 0px 0px;
+}
+#sidebar a{
+    padding: 10px 20px;
+    margin-bottom: 20px;
+    text-decoration: none;
+    font-size: 15px;
+    color: black;
+}
+#sidebar a:hover{
+    background-color: beige;
+
+}
+
+#access_forms{
+    background-color: white;
+    position: fixed;
+    top: 8%;
+    left: 35%;
+    width: 30%;
+    height: 90%;
+    z-index: 3;
+    align-self: center;
+    border: 1px solid black;
+    border-radius: 10px;
+    padding: 20px;
+}
+#afi{
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    margin: auto;
+}
+#individual{
+    margin-top: 10px;
+    padding: 20px;
+}
+.forms{
+    display: flex;
+    flex-direction: column;
+}
+.forms input{
+    padding: 10px;
+    border-radius: 5px;
+    border: 1px solid gray;
+    margin-bottom: 5px;
+}
+.forms input:focus{
+    outline: none;
+}
+
+#main{
+    width: 90%;
+    margin-left: 10%;
+    margin-top: 60px;
+}
+
+.list_cover{
+    margin: 0;
+    list-style-type: none;
+    padding: 10px;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+.list_items{
+    padding: 20px;
+    box-sizing: border-box;
+}
+#db_btns{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.business_logo{
+    width: 100%;
+    height: 200px;
+    background-repeat: no-repeat;
+    background-size: cover;
+    opacity: 0.3;
+}
+.bg_content{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+.listings{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 10px;
+}
+.listings img{
+    width: 200px;
+    height: 200px;
+    box-shadow: 5px 5px 10px gray;
+}
+.listings form{
+    margin-top: 10px;
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    padding: 5px;
+}
+.listings form input{
+    border: none;
+    text-align: center;
+    padding: 3px;
+    margin: 3px 0px;
+}
+
+#mines{
+    display: flex;
+    justify-content: space-between;
+}
+
+/**This class is for business_detail.js**/
+.chosen{
+    border: 4px solid green;
+}

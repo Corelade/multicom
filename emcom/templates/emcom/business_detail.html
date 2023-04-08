@@ -1,0 +1,74 @@
+{% extends 'emcom/layout.html' %}
+{% load static %}
+
+{% block title %}
+    {{business.name}}
+{% endblock %}
+
+{% block script %}
+    <script src="{% static 'emcom/js/business_detail.js' %}"></script>
+{% endblock %}
+
+{% block body %}
+
+    <div class="business_logo" style="background-image: url('{{business.image.url}}');">
+        <div class="bg_content" style="opacity: 1;">
+            <h3>
+                {{business.name}}
+            </h3>
+            <div>
+                {{business.description}}
+            </div>
+        </div>
+    </div>
+
+    {% if request.user.id == business.user_id %}
+        <div>
+            <button id="add_business_item_button">Add Item</button>
+        </div>
+    {% endif %}
+    
+    <div id="add_business_item_form">
+        <div>
+            <div></div>
+            <div class="clo">&times;</div>
+        </div>
+        <form action="{% url 'business_detail' business.id %}" method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+            {{item_form}}
+            <input type="submit">
+        </form>
+    </div>
+
+    <div>
+        <ul class="list_cover">
+            {% for business_item in business_items %}
+                <li class="list_items" id="{{business_item.id}}">
+                    <div class="listings">
+                        <img src="{{business_item.image.url}}" alt="{{business_item.item_name}}">
+                        <form action="#" class="edit_form">    
+                            {% csrf_token %}           
+                            <input type="text" name="item_name" value="{{business_item.item_name}}" readonly>
+                            <input type="text" name="item_description" value="{{business_item.description}}" readonly>
+                            <input type="text" name="item_price" value="#{{business_item.price}}" readonly>
+                        </form>
+                        <!--<h4>{{business_item.item_name}}</h4>
+                        <div>{{business_item.description}}</div>
+                        <div>#{{business_item.price}}</div>-->
+                        {% if request.user.id == business.user_id %}
+                            <div id="db_btns">
+                                <button class="delete_item" id="{{business_item.id}}">Delete</button>
+                                <button class="edit_item" id="{{business_item.id}}">Edit</button>
+                            </div>
+                        {% else %}
+                            <div>
+                                <button id="place_order">Place Order</button>
+                            </div>
+                        {% endif %}
+                    </div>
+                </li>
+            {% endfor %}
+        </ul>
+    </div>
+
+{% endblock %}
